@@ -9,7 +9,7 @@ import java.lang.Math;
 public class Calculator implements ActionListener{
 
 
-
+	String calculation;
     JFrame frame;   
     JTextField textfield;   
     JButton[] numberButtons = new JButton[10];  
@@ -17,6 +17,8 @@ public class Calculator implements ActionListener{
     JButton addButton,subButton,mulButton,divButton, sqrButton;    
     JButton decButton, equButton, delButton, clrButton, negButton;  
     JPanel panel;   
+
+	History history;
 
 	JButton historyButton;
 
@@ -29,6 +31,7 @@ public class Calculator implements ActionListener{
 
 	Calculator(){
 
+		history = new History();
 
 		frame = new JFrame("Calculator");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -133,7 +136,7 @@ public class Calculator implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getSource() == historyButton){
-			History historyWindow = new History();
+			history = new History();
 		}
 
 		for(int i=0;i<10;i++) {
@@ -170,17 +173,13 @@ public class Calculator implements ActionListener{
 			textfield.setText("");
 		}
 
-        if(e.getSource() == sqrButton){
-            num1 = Double.parseDouble(textfield.getText());
-            operator = 'q';
-            textfield.setText(""+num1+"Squared");
-        }
-
 		if(e.getSource()==equButton) {
 			num2=Double.parseDouble(textfield.getText());
 			switch(operator) {
 			case'+':
 				result=num1+num2;
+				calculation = ""+num1+" + "+num2+" = "+result+"";
+				history.setCalculation(calculation);
 				break;
 			case'-':
 				result=num1-num2;
