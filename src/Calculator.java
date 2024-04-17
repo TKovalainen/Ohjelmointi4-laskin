@@ -55,7 +55,6 @@ public class Calculator implements ActionListener{
 	    delButton = new JButton("Del"); 
 	    clrButton = new JButton("Clr"); 
 	    negButton = new JButton("(-)");
-        sqrButton = new JButton("q");
 
 	    functionButtons[0] = addButton; 
 	    functionButtons[1] = subButton; 
@@ -66,7 +65,6 @@ public class Calculator implements ActionListener{
 	    functionButtons[6] = delButton; 
 	    functionButtons[7] = clrButton; 
 	    functionButtons[8] = negButton;
-        functionButtons[9] = sqrButton;
 
 		
 
@@ -188,9 +186,6 @@ public class Calculator implements ActionListener{
 			case'/':
 				result=num1/num2;
 				break;
-            case'q':
-                result = Math.sqrt(num1);
-                break;
 			}
 			textfield.setText(String.valueOf(result));
 			num1=result;
