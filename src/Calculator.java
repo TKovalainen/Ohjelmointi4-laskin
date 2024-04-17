@@ -18,6 +18,8 @@ public class Calculator implements ActionListener{
     JButton decButton, equButton, delButton, clrButton, negButton;  
     JPanel panel;   
 
+	JButton historyButton;
+
     Font myFont = new Font("Arial",Font.BOLD,30);   
 
     double num1=0,num2=0,result=0;  
@@ -26,6 +28,7 @@ public class Calculator implements ActionListener{
 	
 
 	Calculator(){
+
 
 		frame = new JFrame("Calculator");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,6 +39,11 @@ public class Calculator implements ActionListener{
 		textfield.setFont(myFont);
 		textfield.setEditable(false);
 		
+		historyButton = new JButton("History");
+		historyButton.setFont(myFont);
+		historyButton.setFocusable(false);
+		historyButton.addActionListener(this);
+
 	    addButton = new JButton("+");   
 	    subButton = new JButton("-");   
 	    mulButton = new JButton("*");   
@@ -81,6 +89,7 @@ public class Calculator implements ActionListener{
         negButton.setBounds(50,475,100,50);      
         delButton.setBounds(150,475,100,50);     
         clrButton.setBounds(250,475,100,50);
+		historyButton.setBounds(350, 475, 100, 50);
 
 		panel = new JPanel();
 		panel.setBounds(50, 150, 300, 300);
@@ -102,13 +111,14 @@ public class Calculator implements ActionListener{
 	    panel.add(numberButtons[0]);    
 	    panel.add(equButton);   
 	    panel.add(divButton);
-        panel.add(sqrButton);
 
+		
 		frame.add(panel);
 		frame.add(negButton);
 		frame.add(delButton);
 		frame.add(clrButton);
 		frame.add(textfield);
+		frame.add(historyButton);
 		frame.setVisible(true);
 
 	}
@@ -121,6 +131,10 @@ public class Calculator implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
+		if(e.getSource() == historyButton){
+			History historyWindow = new History();
+		}
 
 		for(int i=0;i<10;i++) {
 			if(e.getSource() == numberButtons[i]) {
@@ -202,6 +216,7 @@ public class Calculator implements ActionListener{
 			temp*=-1;
 			textfield.setText(String.valueOf(temp));
 		}
+
 
 	}
 
