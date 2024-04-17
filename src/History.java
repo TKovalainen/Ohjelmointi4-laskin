@@ -1,4 +1,5 @@
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,11 +10,11 @@ public class History {
     JLabel label;
     String calculation;
 
-    public History(){
+    public History(ArrayList<String> calculation){
 
-        calculation = getCalculation();
-        
-        label = new JLabel(calculation);
+        for(int i = 0; i < calculation.size(); i++){
+            label = new JLabel(calculation.get(i));
+        }
         label.setBounds(0, 0, 100, 50);
         label.setFont(new Font("Arial", Font.PLAIN, 25));
 

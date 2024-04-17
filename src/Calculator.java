@@ -5,11 +5,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 import java.lang.Math;
+import java.util.ArrayList;
 
 public class Calculator implements ActionListener{
 
 
-	String calculation;
+	ArrayList<String> calculation = new ArrayList<String>();
     JFrame frame;   
     JTextField textfield;   
     JButton[] numberButtons = new JButton[10];  
@@ -30,8 +31,6 @@ public class Calculator implements ActionListener{
 	
 
 	Calculator(){
-
-		history = new History();
 
 		frame = new JFrame("Calculator");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -136,7 +135,7 @@ public class Calculator implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getSource() == historyButton){
-			history = new History();
+			history = new History(calculation);
 		}
 
 		for(int i=0;i<10;i++) {
@@ -178,8 +177,7 @@ public class Calculator implements ActionListener{
 			switch(operator) {
 			case'+':
 				result=num1+num2;
-				calculation = ""+num1+" + "+num2+" = "+result+"";
-				history.setCalculation(calculation);
+				setCalculation(num1, num2, result);
 				break;
 			case'-':
 				result=num1-num2;
@@ -217,6 +215,10 @@ public class Calculator implements ActionListener{
 		}
 
 
+	}
+
+	public void setCalculation(Double num1, Double num2, Double result){
+		calculation.add(""+num1+"+"+num2+"="+result+"");
 	}
 
 }
