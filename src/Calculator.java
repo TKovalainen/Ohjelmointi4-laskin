@@ -89,7 +89,7 @@ public class Calculator implements ActionListener{
         negButton.setBounds(50,475,100,50);      
         delButton.setBounds(150,475,100,50);     
         clrButton.setBounds(250,475,100,50);
-		historyButton.setBounds(350, 475, 100, 50);
+		historyButton.setBounds(350, 475, 200, 50);
 
 		panel = new JPanel();
 		panel.setBounds(50, 150, 300, 300);
@@ -175,16 +175,19 @@ public class Calculator implements ActionListener{
 			switch(operator) {
 			case'+':
 				result=num1+num2;
-				setCalculation(num1, num2, result);
+				setCalculation(num1, num2, result, operator);
 				break;
 			case'-':
 				result=num1-num2;
+				setCalculation(num1, num2, result, operator);
 				break;
 			case'*':
 				result=num1*num2;
+				setCalculation(num1, num2, result, operator);
 				break;
 			case'/':
 				result=num1/num2;
+				setCalculation(num1, num2, result, operator);
 				break;
 			}
 			textfield.setText(String.valueOf(result));
@@ -212,8 +215,23 @@ public class Calculator implements ActionListener{
 
 	}
 
-	public void setCalculation(Double num1, Double num2, Double result){
-		calculation.add(""+num1+"+"+num2+"="+result+"");
+	public void setCalculation(Double num1, Double num2, Double result, Character operator){
+		switch(operator){
+			case '+':
+				calculation.add(""+num1+"+"+num2+"="+result+"");
+				break;
+			case '-':
+				calculation.add(""+num1+"-"+num2+"="+result+"");
+				break;
+			case '*':
+				calculation.add(""+num1+"*"+num2+"="+result+"");
+				break;
+			case '/':
+				calculation.add(""+num1+"/"+num2+"="+result+"");
+				break;
+		}
+
+		
 	}
 
 }
